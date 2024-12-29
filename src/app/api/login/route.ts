@@ -17,7 +17,7 @@ interface User {
   name: string;
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
     const body = await req.json();
     const { email, password }: LoginRequestBody = body;
 
