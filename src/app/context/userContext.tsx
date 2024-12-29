@@ -36,14 +36,18 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
+// Create a fetcher function for useSWR
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const userInfo = localStorage.getItem("user");
+  const res = useSWR("/api/verify", fetcher);
   useEffect(() => {
+    const userInfo = localStorage.getItem("user");
     if (userInfo) {
       setUser(JSON.parse(userInfo));
     }
-  }, [userInfo]);
+  }, [res]);
 
   useEffect(() => {
     // Save user info to localStorage whenever it changes
