@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model: Represents a user in the system
+model User {
+  email    String  @unique // Unique email field
+  name     String // Name of the User
+  password String
+  Seats    Seats[]
+}
+
+// Seats model: Represents the seats in the system
+model Seats {
+  id        Int     @id @default(autoincrement()) // Auto-incrementing ID for Seat
+  reserved  Boolean @default(false) // Reserved status of the Seat
+  userEmail String? // Foreign key referring to the User email
+  row       Int
+  user      User?   @relation(fields: [userEmail], references: [email]) // Relation to User model
+
+  @@unique([id]) // Ensuring the seat ID is unique (though this is the default behavior)
+}
