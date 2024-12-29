@@ -28,17 +28,16 @@ const page = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await res.json();
-      setUser({
-        name: data.name,
-        email: data.email,
-      });
       if (res.ok) {
-        toast("Login successful!");
+        setUser({
+          name: data.name,
+          email: data.email,
+        });
+        toast.success("Login successful!");
         router.push("/");
       } else {
-        toast(data.message || "Something went wrong");
+        toast.error(data.message || "Something went wrong");
       }
     } catch (error) {
       setErrorMessage("Something went wrong");

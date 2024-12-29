@@ -36,22 +36,14 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
-// Create a fetcher function for useSWR
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const res = useSWR("/api/verify", fetcher);
+  const userInfo = localStorage.getItem("user");
   useEffect(() => {
-    const userInfo = localStorage.getItem("user");
-    if (!userInfo || res.error) {
-      // If no token or user info in local storage, clear the local storage
-      localStorage.removeItem("user");
-    } else {
-      // Sync user data with local storage
-      setUser(JSON.parse(userInfo)); // Assuming you're using useContext or local state
+    if (userInfo) {
+      setUser(JSON.parse(userInfo));
     }
-  }, [res]);
+  }, [userInfo]);
 
   useEffect(() => {
     // Save user info to localStorage whenever it changes
