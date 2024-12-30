@@ -12,7 +12,6 @@ interface SignupRequestBody {
 export async function POST(req: Request) {
     const body = await req.json();
     const { email, password, fullName }: SignupRequestBody = body;
-    console.log(email, password, fullName); 
     // Basic input validation
     if (!email || !password || !fullName) {
       return new Response(

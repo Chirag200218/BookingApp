@@ -13,8 +13,8 @@ export default function useTicketWindow() {
     console.error("Failed to fetch ticket window data:", error);
     return {
       seats: [],
-      availableSeats: 0,
-      bookedSeats: 0,
+      availableSeats: [],
+      bookedSeats: [],
     };
   }
 
@@ -22,8 +22,8 @@ export default function useTicketWindow() {
   if (!data) {
     return {
       seats: [],
-      availableSeats: 0,
-      bookedSeats: 0,
+      availableSeats: [],
+      bookedSeats: [],
     };
   }
 

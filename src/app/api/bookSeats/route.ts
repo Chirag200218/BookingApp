@@ -17,12 +17,10 @@ export async function GET() {
         orderBy: { id: 'asc' },
       });
       
-      let availableSeats = seats.filter(seat => !seat.reserved);
-      
       return NextResponse.json({
         seats,
-        availableSeats: availableSeats.length,
-        bookedSeats: seats.length - availableSeats.length,
+        availableSeats: seats.filter(seat => !seat.reserved),
+        bookedSeats: seats.filter(seat => seat.reserved),
       });
     } catch (error) {
       console.error('Error fetching seat details:', error);
@@ -127,7 +125,6 @@ export async function PATCH(req: Request) {
       })].map((seatDetails)=>{
         return seatDetails.id;
       });
-      console.log(seatIds)
       // Update the seats: reset reserved to false and userEmail to null
        await db.seats.updateMany({
         where: {
