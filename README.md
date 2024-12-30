@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Booking App
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The **Booking App** is a web-based application designed to allow users to easily book seats for events or other reserved spaces. It features an intuitive user interface where users can select available seats, make bookings, and view their reserved seats.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The app also includes user authentication with secure login functionality, leveraging **JWT (JSON Web Tokens)** for session management, allowing users to stay logged in across page reloads.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **User Authentication:** 
+  - Users can log in securely with their email and password.
+  - JWT tokens are used for secure session management.
+  
+- **Seat Booking:** 
+  - Users can view available seats and reserve them in real-time.
+  
+- **Real-Time Updates:** 
+  - Seat availability is updated dynamically as users reserve seats.
+  
+- **Responsive Design:** 
+  - The app is fully responsive, making it accessible on both mobile and desktop devices.
+  
+- **Cookie Management:** 
+  - The app uses HTTP-only cookies to securely store the JWT token.
+  
+- **Error Handling:** 
+  - Users receive clear error messages for invalid credentials or booking attempts.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+### Frontend:
+- **React.js (Next.js 14)**: Used for building the user interface and server-side logic.
+- **TailwindCSS**: For styling the application, providing a responsive and customizable design.
+- **SWR**: For data fetching and handling real-time updates.
 
-To learn more about Next.js, take a look at the following resources:
+### Backend:
+- **Node.js**: Server-side environment for handling API requests and business logic.
+- **Next.js API Routes**: For creating API endpoints directly within the Next.js framework.
+- **Prisma ORM**: For interacting with the database in a type-safe manner.
+- **bcryptjs**: For securely hashing passwords before storing them in the database.
+- **JWT (JSON Web Tokens)**: For secure user authentication and managing sessions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Database:
+- **PostgreSQL**: The database used for storing user data and booking information.
+- **Prisma ORM**: Used for database interactions with PostgreSQL.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
