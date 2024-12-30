@@ -44,7 +44,9 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const res = useSWR("/api/verify", fetcher);
   useEffect(() => {
     const userInfo = localStorage.getItem("user");
-    if (userInfo) {
+    if (res.error || !userInfo) {
+      localStorage.removeItem("user");
+    } else {
       setUser(JSON.parse(userInfo));
     }
   }, [res]);
